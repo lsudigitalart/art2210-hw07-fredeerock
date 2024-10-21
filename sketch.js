@@ -1,25 +1,25 @@
-let sound;
-let soundPlayed = false;
-let startTime;
+let soundFile, fft;
 
 function preload() {
-    sound = loadSound('halloween.mp3');
+  soundFile = loadSound('halloween.mp3'); // Replace with your sound file path
 }
 
 function setup() {
-    createCanvas(400, 400);
-    startTime = millis();
+  createCanvas(400, 400);
+  fft = new p5.FFT();
+  fft.setInput(soundFile);
+  soundFile.play();
 }
 
 function draw() {
-    background(220);
+  background(220);
+  let spectrum = fft.analyze();
+  let bassEnergy = fft.getEnergy("bass");
 
-    if (!soundPlayed) {
-        sound.play();
-        soundPlayed = true;
-    }
+  let threshold = 200; // Adjust this value as needed
 
-    if (millis() - startTime > 3000) {
-        ellipse(width / 2, height / 2, 50);
-    }
+  if (bassEnergy > threshold) {
+    fill(255, 0, 0);
+    ellipse(width / 2, height / 2, 50, 50);
+  }
 }
