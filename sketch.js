@@ -17,11 +17,22 @@ function mousePressed() {
   startTime = millis();
 
 }
-
+ 
 function draw() {
     background(220);
 
-    if (millis() - startTime > 3000) {
-        ellipse(width / 2, height / 2, 50);
+    if (millis() - startTime > 3000 && millis() - startTime < 4000) {
+        fill(0)
     }
+
+    if (millis() - startTime > 4000 && millis() - startTime < 5000) {
+        fill(255)    
+    }
+
+    if (millis() - startTime > 5000 && millis() - startTime < 6000) {
+        fill(0)
+    }
+
+    ellipse(width / 2, height / 2, 50);
+
 }
