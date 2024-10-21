@@ -8,14 +8,12 @@ function preload() {
 
 function setup() {
     createCanvas(400, 400);
-    // userStartAudio();
 }
 
 function mousePressed() {
   if (!soundFile.isPlaying()) {
     soundFile.play();
   }
-
   startTime = millis();
 
 }
